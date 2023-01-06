@@ -4,6 +4,14 @@
 #include <vector>
 #include <utility>
 
+class Things {
+    Things();
+};
+
+Things::Things() {
+    std::cout << "Things" << std::endl;
+}
+
 int main(){
 
     std::cout << "!!Playground!!" << std::endl;
