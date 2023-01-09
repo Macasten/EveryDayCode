@@ -14,9 +14,13 @@ project(
 # Compiler settings
 # -----------------------------------------------------------------------------
 
-# Add executable
-add_executable(134 134-Gas-Station.cpp)
-add_executable(452 452-Minimum-Number-of-Arrows-to-Burst-Balloons.cpp)
-add_executable(944 944-Delete-Columns-to-Make-Sorted.cpp)
-add_executable(2244 2244-Minimum-Rounds-to-Complete-All-Tasks.cpp)
-add_executable(1833 1833-Maximum-Ice-Cream-Bars.cpp)
+# Define a parta onde sera colocado o binario resultante da compilação
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../output)
+
+file( GLOB_RECURSE FILES_SOURCES )
+foreach( MAIN_SOURCE_FILE ${FILES_SOURCES} )
+  get_filename_component(EXECUTABLE_NAME ${MAIN_SOURCE_FILE} NAME_WE)
+  add_executable( ${EXECUTABLE_NAME} ${MAIN_SOURCE_FILE} )
+  # Define as definições de compilação
+  target_compile_definitions(${EXECUTABLE_NAME} PRIVATE FLAG_TEST_ON )
+endforeach( MAIN_SOURCE_FILE ${FILES_SOURCES} )
