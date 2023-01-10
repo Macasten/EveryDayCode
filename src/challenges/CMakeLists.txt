@@ -1,18 +1,22 @@
 # =============================================================================
 # General settings
 # -----------------------------------------------------------------------------
+message(STATUS "Challenges Hall")
 cmake_minimum_required(VERSION 3.22.1)
 
 project(
-	playground
+	ChallengesHall
 	VERSION 1.0.0
-	DESCRIPTION "Workspace to test same code"
+	DESCRIPTION "Main gathering for challenges"
 	LANGUAGES CXX
 )
 
+print_environment()
 # =============================================================================
 # Compiler settings
 # -----------------------------------------------------------------------------
 
-# Add executable
-add_executable(playground ./playground.cpp)
+# =============================================================================
+# Project settings
+# -----------------------------------------------------------------------------
+add_subdirectory(leetcode)
