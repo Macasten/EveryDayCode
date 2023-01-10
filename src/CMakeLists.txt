@@ -4,9 +4,9 @@
 cmake_minimum_required(VERSION 3.22.1)
 
 project(
-	playground
+	SourceCode
 	VERSION 1.0.0
-	DESCRIPTION "Workspace to test same code"
+	DESCRIPTION "Main source code folder"
 	LANGUAGES CXX
 )
 
@@ -14,5 +14,8 @@ project(
 # Compiler settings
 # -----------------------------------------------------------------------------
 
-# Add executable
-add_executable(playground ./playground.cpp)
+# =============================================================================
+# Project settings
+# -----------------------------------------------------------------------------
+
+add_subdirectory(challenges)
