@@ -6,20 +6,11 @@
 THIS_FILE=$(readlink -f $0)
 THIS_FOLDER="$(dirname $THIS_FILE)"
 
-echo "$THIS_FILE"
-echo "$THIS_FOLDER"
-
 cd "$THIS_FOLDER"
 
-echo "Loading configuration"
 source ../../config/config.sh
-# echo "$EVERYDAY_CODE_SHRC_FILE"
-echo "$EVERYDAY_CODE_CONFIG_FOLDER"
-echo "$EVERYDAY_CODE_BASE_FOLDER"
-echo "$LEETCODE_CHALLENGES_FOLDER"
-echo "configs"
 
-################################################################################
+#########a#######################################################################
 # leetcode management
 ################################################################################
 function getChallengeFile(){
@@ -28,8 +19,15 @@ function getChallengeFile(){
 }
 
 function newChallenge(){
+  # Get new file name
   CHALLENGE_FILE=$( getChallengeFile "$1")
-  touch $CHALLENGE_FILE
+
+  # Copy template file
+  cp $LEETCODE_CHALLENGES_TEMPLATE $CHALLENGE_FILE
+
+  # Replace challenge tile
+  sed -i "s/<CHALLENGE_TITLE>/$CHALLENGE_TITLE/g" $CHALLENGE_FILE
+
 }
 ################################################################################
 # main
@@ -40,7 +38,7 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     -n|--new)
       shift
-      CHALLENGE_TITEL=$1
+      CHALLENGE_TITLE=$1
       shift
       ;;
     # -m|--math)
@@ -84,7 +82,12 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-getChallengeFile "$CHALLENGE_TITEL"
-newChallenge "$CHALLENGE_TITEL"
+newChallenge "$CHALLENGE_TITLE"
+
+# TODO add git validation and branch creation
+# if [ `git rev-parse --verify asdf 2>/dev/null` ]
+# then
+#   echo "cenas"
+# fi
 
 echo "!!END!!"
