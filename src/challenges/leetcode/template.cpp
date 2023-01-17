@@ -12,27 +12,61 @@
 // Personal Helpers
 ////////////////////////////////////////////////////////////////////////////////
 
+#include "Print.h"
 #include "TreeNode.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Solution
 ////////////////////////////////////////////////////////////////////////////////
-class Solution {
+class Solution
+{
+private:
+  int test{0};
+
 public:
-  static void ShowChallengeTitle(){
+  Solution() {}
+
+  void showChallengeTitle()
+  {
     std::cout << "-------------------------------------------------------------\n";
     std::cout << "!! <CHALLENGE_TITLE> !!\n";
     std::cout << "-------------------------------------------------------------\n";
   }
-  // Challenge code - START
 
+  void startTest()
+  {
+    std::cout << "---------------" << std::endl;
+    std::cout << "Test #" << test << std::endl;
+    std::cout << "---------------" << std::endl;
+    test++;
+  }
+
+  void endTest()
+  {
+    std::cout << "-- TEST ENDED --" << std::endl;
+  }
+
+  template <typename T>
+  void resultValidation(const T &t, const T &r)
+  {
+    if (t == r)
+      std::cout << "SUCCEED" << std::endl;
+    else
+      std::cout << "FAILED" << std::endl;
+  }
+  // Challenge code - START
+  void run()
+  {
+  }
   // Challenge code - ENDED
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Main
 ////////////////////////////////////////////////////////////////////////////////
-int main(){
-  Solution::ShowChallengeTitle();
+int main()
+{
+  Solution solution;
+  solution.showChallengeTitle();
   return 0;
 }
