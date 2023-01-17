@@ -2,11 +2,7 @@
 // c++ libraries
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <vector>
-#include <utility>
+#include <bits/stdc++.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Personal Helpers
@@ -55,10 +51,11 @@ public:
       std::cout << "FAILED" << std::endl;
   }
   // Challenge code - START
+
+  // Challenge code - ENDED
   void run()
   {
   }
-  // Challenge code - ENDED
 };
 
 ////////////////////////////////////////////////////////////////////////////////
