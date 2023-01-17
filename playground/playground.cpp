@@ -1,22 +1,21 @@
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <vector>
-#include <utility>
+#include <bits/stdc++.h>
 
-class Things {
-    Things();
+class Things
+{
+  Things();
 };
 
-Things::Things() {
-    std::cout << "Things" << std::endl;
+Things::Things()
+{
+  std::cout << "Things" << std::endl;
 }
 
-int main(){
+int main()
+{
 
-    std::cout << "!!Playground!!" << std::endl;
-    // Playground Start
+  std::cout << "!!Playground!!" << std::endl;
+  // Playground Start
 
-    // Playground Ended
-    return 0;
+  // Playground Ended
+  return 0;
 }
