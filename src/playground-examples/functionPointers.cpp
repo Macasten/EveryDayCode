@@ -47,6 +47,16 @@ void Things::setReturnFunction()
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Function pointers - global
+////////////////////////////////////////////////////////////////////////////////
+
+int returnOne() { return 1; }
+int (*globalReturnNumber)(void) = &returnOne;
+
+int square(int num) { return num * num; }
+int (*intActionFunction)(int) = &square;
+
 int main()
 {
 
@@ -66,7 +76,14 @@ int main()
   thing.setReturnFunction();
   // Must return 4
   std::cout << thing.returnNumber() << std::endl;
+
+  std::cout << globalReturnNumber() << std::endl;
+  std::cout << "Should be 1" << std::endl;
+  globalReturnNumber = &thing.returnFive;
+  std::cout << globalReturnNumber() << std::endl;
+  std::cout << "Should be 5" << std::endl;
+
+  std::cout << "Action Function: " << intActionFunction(2) << std::endl;
   // Playground Ended
-  int examples{4};
   return 0;
 }
