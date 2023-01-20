@@ -9,6 +9,7 @@ THIS_FOLDER="$(dirname $THIS_FILE)"
 cd "$THIS_FOLDER"
 
 source ../../config/config.sh
+source ./echo-messages.sh
 
 ################################################################################
 # leetcode management
@@ -22,12 +23,19 @@ function newChallenge(){
   # Get new file name
   CHALLENGE_FILE=$( getChallengeFile "$1")
 
+  # Check if file exist
+  if [ -f "$CHALLENGE_FILE" ] ; then
+    echo_error "File already exist: $CHALLENGE_FILE"
+    exit 1
+  fi
+
   # Copy template file
   cp $LEETCODE_CHALLENGES_TEMPLATE $CHALLENGE_FILE
 
   # Replace challenge tile
   sed -i "s/<CHALLENGE_TITLE>/$CHALLENGE_TITLE/g" $CHALLENGE_FILE
 
+  echo_info "File created: $CHALLENGE_FILE"
 }
 ################################################################################
 # main
@@ -39,55 +47,14 @@ while [[ $# -gt 0 ]]; do
     -n|--new)
       shift
       CHALLENGE_TITLE=$1
+      NEW_CHALLENGE=1
       shift
       ;;
-    # -m|--math)
-    #     shift
-    #     MATH_LIB=$1
-    #     shift
-    #     ;;
-    # -m*)
-    #     shift
-    #     MATH_LIB="${1#*-m}"
-    #     shift
-    #     ;;
-    # -t|--type)
-    #     shift
-    #     BUILD_TYPE=$(echo $1 | tr 'a-z' 'A-Z')
-    #     shift
-    #     ;;
-    # -t*)
-    #     shift
-    #     BUILD_TYPE=$(echo "${1#*-t}" | tr 'a-z' 'A-Z')
-    #     shift
-    #     ;;
-    # -a|--arch)
-    #     shift
-    #     BUILD_ARCH=$1
-    #     shift
-    #     ;;
-    # -a*)
-    #     BUILD_ARCH="${1#*-a}"
-    #     shift
-    #     ;;
-    # -f|--bypass-verification)
-    #     BYPASS_VERIFICATION=true
-    #     shift
-    #     ;;
-    # \?)
-    #     shift
-    #     echo "Invalid option: -$OPTARG"
-    #     exit 1
-    #     ;;
   esac
 done
 
-newChallenge "$CHALLENGE_TITLE"
-
-# TODO add git validation and branch creation
-# if [ `git rev-parse --verify asdf 2>/dev/null` ]
-# then
-#   echo "cenas"
-# fi
-
-echo "!!END!!"
+# Backup playground file
+if [[ -n "$NEW_CHALLENGE" ]] ; then
+  echo_info "Starting Environment Setup"
+  newChallenge "$CHALLENGE_TITLE"
+fi
