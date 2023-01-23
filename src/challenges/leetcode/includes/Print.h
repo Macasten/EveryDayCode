@@ -54,4 +54,21 @@ void print_grid(const std::vector<std::vector<T>> &grid, std::string label = "GR
   std::cout << "}\n";
 }
 
+template <typename T, typename U>
+void print_map(const std::map<T, U> &map, std::string label = "MAP")
+{
+  print_label(label);
+  if (map.empty())
+  {
+    std::cout << "EMPTY" << std::endl;
+  }
+
+  std::cout << "\n"
+            << std::endl;
+  for (const auto it : map)
+  {
+    std::cout << "Key: " << it.first << " Value: " << it.second << std::endl;
+  }
+}
+
 #endif /* PRINT_H */
