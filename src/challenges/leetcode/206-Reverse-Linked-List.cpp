@@ -26,7 +26,7 @@ public:
   void showChallengeTitle()
   {
     std::cout << "-------------------------------------------------------------\n";
-    std::cout << "!! <CHALLENGE_TITLE> !!\n";
+    std::cout << "!! 206. Reverse Linked List !!\n";
     std::cout << "-------------------------------------------------------------\n";
   }
 
@@ -52,10 +52,31 @@ public:
       std::cout << "FAILED" << std::endl;
   }
   // Challenge code - START
-
-  // Challenge code - ENDED
-  void run()
+  ListNode *reverseList(ListNode *head)
   {
+    if (head == nullptr || head->next == nullptr)
+      return head;
+
+    ListNode *prev = nullptr;
+    ListNode *next = nullptr;
+    while (head->next)
+    {
+      next = head->next;
+      head->next = prev;
+      prev = head;
+      head = next;
+    }
+    head->next = prev;
+
+    return head;
+  }
+  // Challenge code - ENDED
+  void runReverseList(std::vector<int> list, std::vector<int> expected)
+  {
+    auto temp = ListNode::build(list);
+    auto expe = ListNode::build(expected);
+    temp = reverseList(temp);
+    resultValidation(*temp, *expe);
   }
 };
 
@@ -66,5 +87,7 @@ int main()
 {
   Solution solution;
   solution.showChallengeTitle();
+  solution.runReverseList({1, 2, 3, 4, 5}, {5, 4, 3, 2, 1});
+  solution.runReverseList({1, 2}, {2, 1});
   return 0;
 }

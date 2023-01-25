@@ -8,6 +8,12 @@
 #include <bits/stdc++.h>
 
 ////////////////////////////////////////////////////////////////////////////////
+// Personal Helpers
+////////////////////////////////////////////////////////////////////////////////
+
+#include "ListNode.h"
+
+////////////////////////////////////////////////////////////////////////////////
 // Fuctions
 ////////////////////////////////////////////////////////////////////////////////
 void print_label(std::string label)
@@ -76,4 +82,23 @@ void print_map(const std::map<T, U> &map, std::string label = "MAP")
   }
 }
 
+void print_listNode(ListNode *list, std::string label = "LIST_NODE")
+{
+  print_label(label);
+  if (list == nullptr)
+  {
+    std::cout << "EMPTY" << std::endl;
+  }
+
+  std::cout << "\n";
+  while (true)
+  {
+    std::cout << list->val;
+    if (list->next == nullptr)
+      break;
+    std::cout << " -> ";
+    list = list->next;
+  }
+  std::cout << std::endl;
+}
 #endif /* PRINT_H */
