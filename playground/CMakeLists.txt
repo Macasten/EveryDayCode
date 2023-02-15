@@ -14,5 +14,12 @@ project(
 # Compiler settings
 # -----------------------------------------------------------------------------
 
+add_subdirectory(includes)
+
 # Add executable
-add_executable(playground ./playground.cpp)
+
+set(EXECUTABLE_NAME playground)
+add_executable(${EXECUTABLE_NAME} ./playground.cpp)
+
+target_link_libraries(${EXECUTABLE_NAME} PUBLIC playground_lib)
+
