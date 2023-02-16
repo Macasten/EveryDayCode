@@ -59,7 +59,7 @@ public:
       for (size_t j = i + 1; j < nums.size(); j++)
       {
         if (nums.at(i) + nums.at(j) == target)
-          return {i, j};
+          return {static_cast<int>(i), static_cast<int>(j)};
       }
     }
     return {-1, -1};
